@@ -55,6 +55,16 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- integração PostGis -->
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-spatial</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>net.postgis</groupId>
+		    <artifactId>postgis-jdbc</artifactId>
+		    <version>2.1.7.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
