@@ -42,5 +42,44 @@ public class Usuario  implements Serializable{
 	@JoinColumn(name="credencial", nullable=false)
 	@JsonManagedReference
 	private Credencial credencial;
+	
+	public Usuario() {}
+	
+	public Usuario(Long id,  String nome, String email, Credencial credencial) {
+		this.id = id;
+		this.credencial = credencial;
+		this.nome = nome;
+		this.email = email;
+	}
+	
+	public Long getId() {
+		return this.id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Credencial getCredencial() {
+		return credencial;
+	}
+
+	public void setCredencial(Credencial credencial) {
+		this.credencial = credencial;
+	}	
+	
+	
 
 }

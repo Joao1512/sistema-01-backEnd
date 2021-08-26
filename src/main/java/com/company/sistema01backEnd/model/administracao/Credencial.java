@@ -1,11 +1,17 @@
 package com.company.sistema01backEnd.model.administracao;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -33,5 +39,57 @@ public class Credencial implements Serializable{
 	
 	@Column(name = "senha")
 	private String senha;
+	
+	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "credencial_perfil", 
+        joinColumns = { @JoinColumn(name = "credencial") }, 
+        inverseJoinColumns = { @JoinColumn(name = "perfil") } )
+	private List<Perfil> listaPerfil;
+	
+	
+	public Credencial(Long id, String email, String senha) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.senha = senha;
+	}
+	
+	public Credencial() {
+	}
+	
+	public String getEmail() {
+		return this.email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	
+	public String getSenha() {
+		return this.senha;
+	}
+	
+	public List<Perfil> getListaPerfil() {
+		return this.listaPerfil;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setListaPerfil(List<Perfil> listaPerfil) {
+		this.listaPerfil = listaPerfil;
+	}
+	
+	
 
 }
