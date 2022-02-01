@@ -13,4 +13,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
 
 	@Query("Select new com.company.sistema01backEnd.model.administracao.Usuario(u.id, u.nome, u.email, u.credencial) from Usuario u")
 	public List<Usuario> buscarTodos();
+	
+	@Query("Select new com.company.sistema01backEnd.model.administracao.Usuario(u.id, u.nome, u.email, u.credencial) from Usuario u"
+			+ " where u.credencial.id = :idCredencial")
+	public Usuario buscarPorCredencial(Long idCredencial);
 }

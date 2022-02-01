@@ -24,4 +24,8 @@ public class FuncionalidadeService {
 		Optional<Funcionalidade> obj = repository.findById(id);
 		return obj;
 	}
+	
+	public List<Funcionalidade> buscarTodasExceto(List<Long> funcionalidades) {
+		return repository.findByIdNotIn(funcionalidades);
+	};
 }

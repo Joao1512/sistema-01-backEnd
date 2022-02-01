@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.company.sistema01backEnd.DTO.MeuPerfilDTO;
 import com.company.sistema01backEnd.DTO.UsuarioDTO;
 import com.company.sistema01backEnd.model.administracao.Usuario;
 import com.company.sistema01backEnd.services.UsuarioService;
@@ -28,7 +29,7 @@ public class UsuarioResource {
 	@Autowired
 	private UsuarioService service;
 	
-	@Secured("ROLE_CADASTRAR_USUARIO")
+	@Secured("ROLE_DELETAR_USUARIO")
 	@DeleteMapping("/deletar/{id}")
 	public ResponseEntity<Void> deletar(@PathVariable("id") Long id) {
 		service.remover(id);
@@ -51,5 +52,10 @@ public class UsuarioResource {
 		List<Usuario> usuarios = service.listarUsuarios();
 		return usuarios;
 	}
-
+	
+	@GetMapping("/buscarPerfilUsuarioLogado")
+	public ResponseEntity<MeuPerfilDTO> buscarPerfilUsuarioLogado() throws Exception {
+		MeuPerfilDTO meuPerfil = service.buscarPerfilUsuarioLogado();
+		return ResponseEntity.ok(meuPerfil);
+	}
 }
