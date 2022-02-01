@@ -4,9 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -24,7 +26,8 @@ public class Permissao implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Id
+	@Id  @GeneratedValue(generator = "permissao_id_seq")
+	@SequenceGenerator(name = "permissao_id_seq", sequenceName = "permissao_id_seq", allocationSize = 1)
 	private Long id;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
@@ -32,8 +35,8 @@ public class Permissao implements Serializable {
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 	private Funcionalidade funcionalidade;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="perfil", nullable=false)
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="perfil")
 	@JsonBackReference()
 	private Perfil perfil;
 		
@@ -42,6 +45,14 @@ public class Permissao implements Serializable {
 	public Permissao(Long id, Funcionalidade funcionalidade,  Boolean habilitada) {
 		super();
 		this.id = id;
+		this.funcionalidade = funcionalidade;
+		this.habilitada = habilitada;
+	}
+	
+	public Permissao(Long id, Perfil perfil, Funcionalidade funcionalidade,  Boolean habilitada) {
+		super();
+		this.id = id;
+		this.perfil = perfil;
 		this.funcionalidade = funcionalidade;
 		this.habilitada = habilitada;
 	}

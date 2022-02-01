@@ -38,6 +38,12 @@ public class Funcionalidade implements Serializable{
 		this.regra = regra;
 	}
 	
+	public Funcionalidade(Long id, String nome) {
+		super();
+		this.id = id;
+		this.nome = nome;
+	}
+	
 	public Funcionalidade() {
 		super();
 	}
