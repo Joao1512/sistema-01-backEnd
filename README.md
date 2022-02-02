@@ -9,6 +9,7 @@ Extra: Deve ser possível criar diferentes perfis de usuário e gerenciar suas p
 O sistema possui autenticação/autorização com *token JWT* e protocolo *Oauth2.*
 
 # Demonstração
+![23-27-25](https://user-images.githubusercontent.com/43080476/152084093-f935ba70-a413-4b70-835e-fed5b1051878.gif)
 
 # 💻 Tecnologias
 
