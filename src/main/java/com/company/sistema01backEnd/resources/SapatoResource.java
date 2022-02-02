@@ -19,8 +19,12 @@ import com.company.sistema01backEnd.DTO.SapatoFiltroDTO;
 import com.company.sistema01backEnd.model.administracao.Sapato;
 import com.company.sistema01backEnd.services.SapatoService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
-@CrossOrigin()
+@CrossOrigin(origins ="localhost")
+@Api(value = "API REST Sapatos")
 @RequestMapping("/sapatos")
 public class SapatoResource {
 	
@@ -28,6 +32,7 @@ public class SapatoResource {
 	private SapatoService service;
 	
 	@Secured("ROLE_DELETAR_SAPATO")
+	@ApiOperation(value = "excluir um sapato através de seu Id.")
 	@DeleteMapping("/excluir/{id}")
 	public ResponseEntity<Void> excluir(@PathVariable("id") Long id) {
 		service.excluir(id);
@@ -35,6 +40,7 @@ public class SapatoResource {
 	}
 
 	@Secured("ROLE_CADASTRAR_SAPATO")
+	@ApiOperation(value = "Cadastrar um sapato a partir de um objeto.")
 	@PostMapping("/cadastrar")
 	public ResponseEntity<Sapato> cadastrar(@RequestBody SapatoDTO sapato) {
 		Sapato novoSapatoCadastrado = service.salvar(sapato);
@@ -42,6 +48,7 @@ public class SapatoResource {
 	}
 	
 	@Secured("ROLE_VISUALIZAR_SAPATO")
+	@ApiOperation(value = "Editar um sapato a partir de um objeto.")
 	@PostMapping("/editar")
 	public ResponseEntity<Sapato> editar(@RequestBody SapatoDTO sapatoDTO) throws Exception {
 		Sapato sapatoEditado = service.editar(sapatoDTO);
@@ -49,13 +56,15 @@ public class SapatoResource {
 	}
 
 	@Secured("ROLE_VISUALIZAR_SAPATO")
-	@GetMapping("/listarFiltrado")
+	@ApiOperation(value = "Listar todos os sapatos com filtros opcionais.")
+	@PostMapping("/listarFiltrado")
 	public ResponseEntity<List<SapatoDTO>> buscarTodosParaTabela(@RequestBody SapatoFiltroDTO filtro) { 
 		List<SapatoDTO> sapatos = service.buscarTodosParaTabela(filtro);
 		return ResponseEntity.ok(sapatos);
 	}
 	
 	@Secured("ROLE_VISUALIZAR_SAPATO")
+	@ApiOperation(value = "Buscar único sapato através de seu id.")
 	@GetMapping("/buscarPorId/{id}")
 	public ResponseEntity<SapatoDTO> buscarPorId(@PathVariable("id") Long id) throws Exception {
 		Sapato sapato = service.buscarPorId(id);

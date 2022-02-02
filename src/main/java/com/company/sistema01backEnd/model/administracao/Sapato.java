@@ -1,6 +1,7 @@
 package com.company.sistema01backEnd.model.administracao;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Builder;
 import lombok.Data;
@@ -39,6 +44,7 @@ public class Sapato {
 	private String marca;
 	
 	@Column(name = "data_cadastro")
+	@JsonFormat(pattern = "yyyy/MM/dd")
 	private LocalDate dataCadastro;
 	
 	@Column(name = "quantidade_estoque")

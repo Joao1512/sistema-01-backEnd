@@ -2,6 +2,8 @@ package com.company.sistema01backEnd.DTO;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class SapatoFiltroDTO {
 	
 private Long id;
@@ -16,6 +18,7 @@ private Long id;
 	
 	private String marca;
 
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private LocalDate dataCadastro;
 
 	private Long quantidadeEstoque;

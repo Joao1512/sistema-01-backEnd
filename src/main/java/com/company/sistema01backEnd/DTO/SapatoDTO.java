@@ -3,6 +3,7 @@ package com.company.sistema01backEnd.DTO;
 import java.time.LocalDate;
 
 import com.company.sistema01backEnd.model.administracao.Sapato;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Builder;
 
@@ -20,6 +21,7 @@ public class SapatoDTO {
 	
 	private String marca;
 
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd")
 	private LocalDate dataCadastro;
 
 	private Long quantidadeEstoque;
